@@ -6,5 +6,9 @@ python class
 ##this is another headline, but smaller
 ###this is smally small small
 
-*list item
-	*list item again
+*first
+	*git add *
+*second
+	*git commit -m 'some message'
+*third
+	*git push origin master
