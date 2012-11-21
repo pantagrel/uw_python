@@ -28,20 +28,20 @@ def turtlePie(t, sides, radius):
 
 
 
-lengthA = 100
-lengthB = lengthA * 1.4
-degrees = 360/5
-angleAC = 180 - degrees
-angleB = 360 - angleAC * 2
-
-lt(bob, angleB)
+# lengthA = 100
+# lengthB = lengthA * 1.4
+# degrees = 360/5
+# angleAC = 180 - degrees
+# angleB = 360 - angleAC * 2
+# 
+# lt(bob, angleB)
+# fd(bob, lengthB)
+# lt(bob, angleAC)
+# fd(bob, lengthA)
+# lt(bob, angleAC)
 fd(bob, lengthB)
-lt(bob, angleAC)
-fd(bob, lengthA)
-lt(bob, angleAC)
-fd(bob, lengthB)
 
 
-#turtlePie(bob, 5, 50)
+turtlePie(bob, 5, 50)
 
 wait_for_user()

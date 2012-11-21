@@ -1,0 +1,21 @@
+why did we go over this file? regarding the os_path_walk.py
+however. the notes regarding the file: 
+
+topdown = False: look into it.
+
+
+	try/except--
+	(except OSError, e:
+	    print "blah"
+	    
+	    'join': adds OS appropriate slashings.
+	    /dir/dir/dir/etc
+    
+dictionaries.
+write benchmark structures to test code. good design practice.
+
+consider a dictionary of functions: log them. use them when necessary, quickly.
+pass values to, receive values from said functions.
+
+(what's an algorithm? what's a data structure? anyway, both are part of the software design process)
+develop data structures first, and then the algorithm: helps guide algorithm development.    

@@ -1,5 +1,22 @@
 import math
 
+def fibonacci(n):
+	space = ' ' * (4 * n)
+	print space, 'fibonacci', n
+	if not isinstance(n, int):
+	    print 'only numbers, frenchman!'
+	elif n < 0:
+	    print 'only positive numbers, frenchman!'
+	elif n == 0:
+	    print space, 'returning 1'
+	    return 0
+	elif n == 1:
+	    print space, 'returning 0'
+	    return 1
+	else:
+	    print space, 'fibonacci', n
+	    return fibonacci(n - 1) + fibonacci(n - 2)
+
 def areaOfCircle(radius):
     return math.pi * radius**2
 
@@ -17,12 +34,6 @@ circle_area(45, 6, 78, 90)
 areaOfCircle(50)
 distance(3, 4, 6, 9)
 
-'''
-can also be written:
-return math.pi * radius**2
-BUT where does the returned value go? how do i access it?
---> returned value goes nowhere, unless stored in a variable, or passed into another function/process
-'''
 
 def ackerman(m, n):
     if m == 0:
@@ -34,8 +45,6 @@ def ackerman(m, n):
         (m, n - 1)
     else:
         return 'monkeypants'
-
-ackerman(3, 4)
 
 
 def first(word):
@@ -50,6 +59,8 @@ def middle(word):
     print middle[1: -1]
     return word[1:-1]
 
+print fibonacci(5)
+#ackerman(3, 4)
 #first('')
 #last(" ")
 #middle('mississipspi')

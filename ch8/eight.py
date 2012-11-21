@@ -78,7 +78,7 @@ def letterCounter(word, whichLetter):
             count = count + 1
     print count
 
-#letterCounter('respecting', 'e')
+letterCounter('respecting', 'e')
 
 #-------------------------------------------------------------
 #ex. 8.6
@@ -184,5 +184,8 @@ def rotate_word(word, rotateInt):
         newWord = newWord + chr(letterCode)
     return newWord
 
-#SOLVE FOR BIG NUMBERS: CREATE A '360•' SYSTEM: divide by num to get a set point on a circle?    
-print rotate_word("watermelon", -150)
+#SOLVE FOR BIG NUMBERS: CREATE A '360' SYSTEM: divide by num to get a set point on a circle?    
+#print rotate_word("watermelon", -150)
+
+#-------------------------------------------------------------
+

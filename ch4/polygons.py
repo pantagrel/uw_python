@@ -25,7 +25,7 @@ def circle(t, r):
 
 
 #square(bob, 46)
-#polygon(bob, 20, 40)
+polygon(bob, 20, 6)
 circle(bob, 100)
 
 wait_for_user()

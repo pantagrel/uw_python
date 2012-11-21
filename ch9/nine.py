@@ -84,27 +84,36 @@ def avoids_list():
   
 #print avoids_list()
 
+
 #-------------------------------------------------------------
 #ex. 9.4
 # get word, str. return True is word uses only letters in str
-def uses_only(word, str):
-  for char in str:
-    if char in word != char in str:
-      return False
-  return True
-#**********************************************************************    
-#print uses_only('a barb', 'bar'), 'uses-only'
+
+def uses_only(string1, string2):
+    tStr1 = list(string1)
+    tStr2 = list(string2)
+    tStr1.sort()
+    tStr2.sort()
+    if tStr1 == tStr2:
+        return True
+    else:
+        return False
+
+print 'ex. 9.4\n', uses_only('mooches', 'lite')
+
 
 #-------------------------------------------------------------
 #ex. 9.5
 # word, str. build string using all letters in str at least once
 def uses_all(word, str):
-  for char in str:
-    if char not in word:
-      return False
-  return True
+    for char in str:
+        if char not in word:
+            return False
+    return True
   
 #print uses_all('abucklp', 'abcp'), 'uses-all'
+
+
 
 #-------------------------------------------------------------
 #ex. 9.6
@@ -112,23 +121,29 @@ def uses_all(word, str):
 
 
 #-------------------------------------------------------------
-#ex. 9.7
+#ex. 9.7 NOT FINISHED
 # find a word that has 3 consequtive doubble letters
 def threeDoubles(file):
   fin = open(file)
   for line in fin:
     word = line.strip()
-    if len(word)> 7:
+    if len(word)> 5:
       i = 0
-      while i < len(word):
+      while i < len(word)-1:
         counter = 0
         letter1 = word[i]
-        i = i+ 1
-        letter2 = word[i]
+        letter2 = word[i+1]
         if letter1 == letter2:
           counter = counter + 1
           if counter == 3:
             print word
+        i += 1    
+     
         
         
-threeDoubles('words.txt')          
+#threeDoubles('words.txt')      
+
+
+if __name__ == "__main__":
+	uses_only()
+	    
