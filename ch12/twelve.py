@@ -48,6 +48,7 @@ ex. 12.3: print the letters of a string in decreasing order of frequency
 ***************** works, but CAN'T FIGURE OUT HOW TO NOT COUNT SPACES/PUNCTUATION
 ****************************getting key errors for commented out area.
 """
+#sort word alpha before converting to tuple
 
 def letterCount(s):
 	d = dict()
@@ -73,7 +74,7 @@ def histogram(d):
 #--------------------------------------------------------------------------------
 """
 ex. 12.4: read words from a set. print out all the sets of words that are anagrams.
-
+****************SOME WORDS ARE APPENDING TWICE: DUPLICATE KEYS AND VALUES. 
 leftover/later use code: add words to list, zip, organize based on line length:
 words = []
 	wordLen = []
@@ -88,20 +89,25 @@ words = []
 
 def listOrganizer(file):
 	fin = open(file)
-	d = dict()
+	d = {}
+	print type(d)
 	wordLen = 0
 	for line in fin:
 		word = line.strip()
-		tupleWord = tuple(word)
-#HOW CAN I COMPARE TUPLE-KEYS? GETTING A KEY ERROR WHEN I TRY TO COMPARE (==)		
+		listWord = list(word)
+		listWord.sort()
+		tupleWord = tuple(listWord)
 		if tupleWord not in d:
-			d[tupleWord] = word
+			d[tupleWord] = [word]
 		else:
-			d[tupleWord] = 1
-	print d	
-	
-# def anagrams(file):
-# 	listOrganizer(file)
+			d[tupleWord].append(word)
+	for k in d:
+		counter = 0
+		for i in d[k]:
+			counter +=1
+			if counter > 1:
+				print d[k], "\n"
+						
 	 
 
 #--------------------------------------------------------------------------------
@@ -113,4 +119,4 @@ if __name__ == "__main__":
 	#histy = letterCount(s)
 	#print histogram(histy)
 	#print anagrams('words2.txt')
-	listOrganizer('words2.txt')
+	listOrganizer('words.txt')
