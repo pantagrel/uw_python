@@ -21,15 +21,17 @@ def charTest(str):
 #ex. 8.2
 #abecedarian sequence. using concatenation to build new strings:
 
-# prefixes = 'JKLMNOPQ'
-# suffix = 'ack'
-# altSuffix = 'uack'
-# 
-# for letter in prefixes:
-#     if letter == 'O' or letter == 'Q':
-#         print letter + altSuffix
-#     else:
-#         print letter + suffix
+def jackQuack():
+	prefixes = 'JKLMNOPQ'
+	suffix = 'ack'
+	altSuffix = 'uack'
+	for letter in prefixes:
+	    if letter == 'O' or letter == 'Q':
+	        print letter + altSuffix
+	    else:
+	        print letter + suffix
+
+#jackQuack()
 
 #-------------------------------------------------------------
 
@@ -49,24 +51,52 @@ def charTest(str):
 # 
 
 #-------------------------------------------------------------
-#ex. 8.4
-# #searching
-def find(word, letter, start):
-    #set index to 0
-    index = start
-    #start a loop that is as long as the string put into function
-    while index < len(word):
-        #check if letter at position [index] == the letter input into function
-        if word[index] == letter:
-            #if it matches, return that index int value 
-            return index
-        #if it doesn't match yet, increment index and repeat the loop    
-        index = index + 1
-    #if no match is found, return -1
-    return -1
+def traversal(letter, word):
+	"""looks for a character within a string, returns how many of character. if char not found, return 'char not found' """
+	counter = 0
+	for character in word:
+		if character == letter:
+			counter += 1
+	if counter == 0:
+		print 'char not found'
+	else:
+		print counter
 
-#s = find('yellow', 'l', 3)
-#print s
+#traversal('a', 'bananananananan')
+
+
+#ALT: LETTER POSITION INSTEAD OF LETTER COUNT
+def traversalIndex(letter, word):
+	"""looks for a character within a string, returns index of all characters. if char not found, return 'char not found' """
+	index = 0
+	letterOutput = []
+	while index < len(word):
+		letterChecker = word[index]
+		if letterChecker == letter:
+			#put that letter in a str:
+			letterOutput.append(index)
+		index += 1
+	if letterOutput == []:
+		print 'char not found'
+	else:
+		print letterOutput
+
+#traversalIndex('X', 'bananananananan')
+
+
+#-------------------------------------------------------------
+#ex. 8.4
+def find(word, letter, start):
+	"""looks for first instance of a letter within in a word. returns that index if found, else returns -1"""
+	index = start
+	while index < len(word):
+		if word[index] == letter:
+	    		return index
+	    	index = index + 1
+	return -1
+
+# s = find('yellow', 'l', 5)
+# print s
 
 #-------------------------------------------------------------
 #ex. 8.5
@@ -78,24 +108,29 @@ def letterCounter(word, whichLetter):
             count = count + 1
     print count
 
-letterCounter('respecting', 'e')
+#letterCounter('respectinge', 'e')
 
 #-------------------------------------------------------------
 #ex. 8.6
 #repeat ex. 8.5, but use the find() function for ex. 8.4
 
-def letterCounterModified(word, whichLetter, start):
+def letterCounterModified(word, whichLetter='', start=0):
     return find(word, whichLetter, start)    
     
         
-#print letterCounterModified('turtle', 't', 5)
+#print letterCounterModified('rapscallion roger davis', 'r', 2)
+
+#-------------------------------------------------------------
+word = 'baNAnaXXX'
+new_word = word.lower()
+#print new_word
+index = new_word.count('x')
+#print index
+
 
 #-------------------------------------------------------------
 #ex. 8.7, ex. 8.8
-#invoke count() to find number of 'a' in banana
-#invoke other string functions to see how they work: 
-#HAVING TROUBLE. THE PYTHON DOCUMENTATION IS STILL OPAQUE TO ME.
-
+"""explore pythong string documentation. play around."""
 fruit = 'banana'
 state = "Mississippi"
 veggie = 'zucchini'
@@ -103,9 +138,18 @@ dog = "dachshund"
 cat = "Siamese"
 house = "craftsman houses are nice looking. there are quite a few in seattle."
 
-#print state.count('s')
+#print dog.count('s')
 #print house.upper()
 #print house[::-1]
+#print house.replace('are', 'fuck')
+#print 'www.example.com'.strip('cmowz.')
+def inBoth(word1, word2):
+	for letter in word1:
+		if letter in word2:
+			print letter	
+
+#print inBoth('apples', 'oranges')
+
 
 #-------------------------------------------------------------
 #ex.8.9
@@ -117,9 +161,13 @@ house = "craftsman houses are nice looking. there are quite a few in seattle."
 #-------------------------------------------------------------
 #ex 8.10
 def is_palindrome(word):
-    return word == word[::-1]
-    
-#print is_palindrome('my name is daivd')
+    return word[::1] == word[::-1]
+
+def is_reverseWord(word1, word2):
+	return word1[::1] == word2[::-1]
+	    
+print is_palindrome('amanaplanacanalpanama')
+print is_reverseWord('stop', 'pots')
 
 #-------------------------------------------------------------
 #ex 8.11
