@@ -1,124 +1,176 @@
 import urllib
+#-------------------------------------------------------------
+fin = open('words.txt')
+# print fin.readline()
 
-'''
-webStringy = urllib.urlopen('http://scintillus.com')
-'''
+
 #-------------------------------------------------------------
 #ex. 9.1
-#only print a word if it has more than 20 characters
 def print_longWords(file):
-    fin = open(file)
-    for line in fin:
-        word = line.strip()
-        if len(word) > 20:
-            print word
+	"""only print a word if it has more than 20 characters"""
+	fin = open(file)
+	for line in fin:
+		word = line.strip()
+		if len(word) > 20:
+			print word
 
-#print_longWords('words.txt')
+# print_longWords('words.txt')
 
 #-------------------------------------------------------------
 #ex. 9.2
-#only print words with no 'e':
-
 def has_no_e(file):
-  fin = open(file)
-  for line in fin:
-    word = line.strip()
-    if 'e' not in word:
-      print word
+	"""only print words that have no 'e' """
+	fin = open(file)
+	for line in fin:
+		word = line.strip()
+		if 'e' not in word:
+			print word
       
-#has_no_e('words.txt')      
+# has_no_e('words.txt')      
 
 #-------------------------------------------------------------
 #ex. 9.2.2
-#modify 9.2 to also compute percentage of words in list that have no 'e'
-
 def has_no_ePercentage(file):
-  counter_total = 0.0
-  counter_no_e = 0.0
-  fin = open(file)
-  for line in fin:
-    counter_total = counter_total + 1
-    word = line.strip()
-    if 'e' not in word:
-      counter_no_e = counter_no_e + 1
-  print (counter_no_e/counter_total) * 100, 'percent'
+	"""compute percentage of words in 'words.txt' that have no 'e' """
+	counter_total = 0.00
+	counter_no_e = 0.00
+	fin = open(file)
+	for line in fin:
+		counter_total = counter_total + 1
+		word = line.strip()
+		if 'e' not in word:
+			counter_no_e = counter_no_e + 1
+	print round((counter_no_e/counter_total * 100),2), "percent of words have no 'e'"
 
 # has_no_ePercentage('words.txt')
 
 #-------------------------------------------------------------
 #ex. 9.3
 # takes str + forbidden letters, returns True if letters aren't there
-
 def avoids(word, str):
-  checker_var = True 
-  for char in str:
-    if char in word:
-      #print char
-      checker_var = False
-  return checker_var
+	""" takes a word and a string of forbidden letters, and that returns True if the word does not use any of the forbidden letters """
+	checker_var = True 
+	for char in str:
+		if char in word:
+			print char
+			checker_var = False
+	return checker_var
     
-#print avoids('i am flhying on a cloud of baro', 'llllltti')
+# print avoids('i am flhying on a cloud of baro', 'ycl')
 
 #-------------------------------------------------------------
 #ex. 9.3.2
-# user inputs forbidden str, checks agains words.txt. prints ## of words that don't contain the forbidden str
-
 def avoids_list():
-  counter = 0
-  counter_total = 0
-  fin = open('words2.txt')
-  str = raw_input('enter the forbidden letters:\n> ') 
-  for line in fin:
-    counter_total = counter_total + 1
-    word = line.strip()
-    for char in str:
-      if char in word:
-        print char
-        print word
-        counter = counter + 1    
-#*********************************************************************
-#once counter increments, move on to the next word. HOW TO DO!!!
-#**********************
-        print counter
-  return counter_total - counter 
+	""" user inputs forbidden str, checks agains words.txt. prints number of words that do not contain the forbidden str """
+	counter = 0
+	counter_total = 0
+	fin = open('words.txt')
+	forbiddenString = raw_input('enter the forbidden letters:\n> ') 
+	for line in fin:
+		counter_total += 1
+		word = line.strip()
+		if forbiddenString in word:
+			counter += 1
+			print word
+	print counter_total - counter, 'words do not contain "%s"' % forbiddenString
   
-#print avoids_list()
+# avoids_list()
 
+#changing 'print' to 'return' in line 75 causes the statement to print in parenthesis with the quotes around the string still showing. why?
 
 #-------------------------------------------------------------
 #ex. 9.4
-# get word, str. return True is word uses only letters in str
+def uses_only(word, letterString):
+	""" 
+	takes a word and a string of letters, and returns True if the word contains only letters in the list. Can you make a sentence using only the letters acefhlo? Other than 'Hoe alfalfa?' 
+	"""
+	for letter in word:
+		if letter not in letterString:
+			return False
+#  		print letter
+ 	return True
 
-def uses_only(string1, string2):
-    tStr1 = list(string1)
-    tStr2 = list(string2)
-    tStr1.sort()
-    tStr2.sort()
-    if tStr1 == tStr2:
-        return True
-    else:
-        return False
-
-print 'ex. 9.4\n', uses_only('mooches', 'lite')
+# print uses_only('moocheshcesoooooomeschmoooeszzzzzzzza', 'chesomxyz')
 
 
 #-------------------------------------------------------------
-#ex. 9.5
-# word, str. build string using all letters in str at least once
-def uses_all(word, str):
-    for char in str:
-        if char not in word:
-            return False
-    return True
+#ex. 9.5.1
+def uses_all(word, requiredLetters):
+	""" 
+	takes a word and a string of required letters, and that returns True if the word uses all the required letters at least once. How many words are there that use all the vowels aeiou? How about aeiouy? 
+	"""
+	
+	for letter in requiredLetters:
+		if letter not in word:
+			print letter
+			return False
+	return True
   
-#print uses_all('abucklp', 'abcp'), 'uses-all'
+# print uses_all('cows in the field, dogs in the barn, upstairs', 'aeiou')
 
+#-------------------------------------------------------------
+#ex. 9.5.2
+def uses_all(requiredLetters):
+	""" 
+	takes words.txt and a string of required letters: how many words are there that use all the vowels aeiou? How about aeiouy? 
+	"""
+	counter_not = 0
+	counter_total = 0
+	fin = open('words.txt')
+	for line in fin:
+		word = line.strip()
+		counter_total += 1
+		for letter in requiredLetters:
+			if letter not in word:
+				break
+			counter_not += 1
+	return counter_total - counter_not
+  
+# print uses_all('aeiouy')
+
+#-------------------------------------------------------------
+#ex. 9.6.1
+def is_abecedarian(word):
+	"""
+	returns True if the letters in a word appear in alphabetical order (double letters are ok). How many abecedarian words are there?
+	"""
+	holder = 'a'
+	for letter in word:
+		holderNext = letter
+		if holderNext >= holder:
+			holder = letter
+# 			print holder, holderNext
+		else:
+			return False
+	return True
+		
+# print is_abecedarian('shoots')
 
 
 #-------------------------------------------------------------
-#ex. 9.6
-# 
-
+#ex. 9.6.2
+#scans words.txt for abecedarian words
+def abecedarianList(textFile):
+	"""
+	returns True if the letters in a word appear in alphabetical order (double letters are ok). How many abecedarian words are there?
+	"""
+	abecedarian_words = 0
+	fin = open(textFile)
+	for line in fin:
+		word = line.strip()	
+		i = 0
+		while i < len(word) - 1:
+			if word[i + 1] >= word[i]:
+# 				print word[i]
+				i += 1
+				if i == len(word) - 1:
+					print word
+					abecedarian_words += 1			
+			else:
+				break
+	return abecedarian_words		
+						
+print abecedarianList('words.txt')
 
 #-------------------------------------------------------------
 #ex. 9.7 NOT FINISHED
@@ -143,7 +195,3 @@ def threeDoubles(file):
         
 #threeDoubles('words.txt')      
 
-
-if __name__ == "__main__":
-	uses_only()
-	    
