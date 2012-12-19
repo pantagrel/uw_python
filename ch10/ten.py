@@ -1,14 +1,12 @@
-#PRACTICE
-#empty list
 
 from random import randint 
 import time
 
 
 emptyList = []
-cheeseList = ['Edam', 'Cheddar', 'Gouda', 'mozzarella', 'feta', 'Swiss', 'Laughing Cow']
+cheeseList = ['Edam', 'brie', 'chevre', 'mozzarella', 'feta', 'Swiss', 'ricotta']
 meatList = ['shrimp', 'bacon', 'tongue']
-veggieList = ['broccoli', 'beans', 'lettuce', 'kale', 'onions', 'cucumber', 'cucumber']
+veggieList = ['broccoli', 'beans', 'lettuce', 'kale', 'onions', 'cucumber', 'cucumber', 'cilantro', 'carrot', 'cauliflower', 'carrot']
 groceries = [cheeseList, meatList, veggieList]
 
 def randomListMaker():
@@ -20,7 +18,7 @@ def randomListMaker():
         i += 1
     return t 
     
-#print randomListMaker() 
+# print randomListMaker() 
 
 #print 'Edam' in cheeses
 #print 'Brie' in cheeses
@@ -35,77 +33,95 @@ def randomListMaker():
 
 
 #--------------------------------------------------------------------------------
-"""
-ex. 10.1 
-
-sum of nested list of integers. in this method, all list elements should be lists
-in this method, one must know how many levels of nesting is happing (for the 
-'for loops')
-"""
+# ex. 10.1 
 listOne = [2, 4, 6, 8]
 listTwo = [1, 3, 5, 7]
-listThree = [listOne, listTwo, [8, 9, 10, 11]]
+list3 = [listOne, listTwo, [8, 9, 10, 11]]
 
 def nested_sum(theList):
-  listSum = 0
-  for x in theList:
-    for y in x:
-      listSum += y 
-  return listSum
+	"""
+	sum of nested list of integers. in this method, all list elements should be lists
+in this method, one must know how many levels of nesting is happing (for the 
+'for loops')
+	"""
+	listSum = 0
+	for x in theList:
+		for y in x:
+			listSum += y 
+	return listSum
     
-#print 'ex. 10.1\n', nested_sum(listThree)
+# print nested_sum(list3)
 
 
 #--------------------------------------------------------------------------------
-"""
-ex. 10.2 
-take a list of nested strings, return a nested list with all strings capitalized.
-"""
+# ex. 10.1 
+listThree = [listOne, listTwo, 8, 9, 10, 11]
 
+def nested_sumNestMix(theList):
+	"""
+	sum of nested list of integers. in this method, all list elements should be lists
+in this method, one must know how many levels of nesting is happing (for the 
+'for loops')
+	"""
+	listSum = 0
+	for x in theList:
+		if type(x) == list:
+			for y in x:
+				listSum += y
+		else:
+			listSum += x
+	return listSum
+    
+# print nested_sumNestMix(listThree)
+
+
+#--------------------------------------------------------------------------------
+#ex. 10.2 
 def capitalize_all(t):
-  res = []
-  subRes = []
-  for s in t:
-    for u in s:
-      subRes.append(u.capitalize())
-  res += subRes  
-  return res
+	"""
+	take a list of nested strings, return a nested list with all strings capitalized.
+	"""
+	res = []
+	for s in t:
+		subRes = []
+		for u in s:
+			subRes.append(u.capitalize())
+		res.append(subRes)
+	return res
 
-#print 'ex 10.2\n', capitalize_all(groceries)
+# print capitalize_all(groceries)
 
 
 #--------------------------------------------------------------------------------
-"""
-ex. 10.3
-cumulative sum of a list of integers
-"""
-
+# ex. 10.3
 def cumulative_sum(t):
-  newList = t[:]  #comment this line out, changes vars to 't' and the original list will be modified instead of a new list
-  holder = 0    
-  for i in range(len(t)):
-    holder += t[i] 
-    newList[i] = holder
-  return newList
+	"""
+	cumulative sum of a list of integers
+	"""
+	newList = t[:]  #comment this line out, changes vars to 't' and the original list will be modified instead of a new list
+	holder = 0    
+	for i in range(len(t)):
+		holder += t[i] 
+		newList[i] = holder
+	return newList
     
-#print 'ex. 10.3\n', cumulative_sum(listOne)    
+#print cumulative_sum(listOne)    
 
 
 #--------------------------------------------------------------------------------
+#ex. 10.4
 """
-ex. 10.4
 return all but first and last elements
 """
 
-
 def middle(t):
-  if len(t) > 2:
-    s = t[:]
-    return s[1:-1]
-  else:
-    return 'short list! come back with a longer one.'
+	if len(t) > 2:
+		s = t[1:-1]
+		return s 
+	else:
+		return 'short list! come back with a longer one.'
 
-#print 'ex. 10.4\n', middle(meatList)
+# print middle(meatList)
 
 
 #--------------------------------------------------------------------------------
@@ -115,186 +131,177 @@ remove first and last, return none
 """
 
 def chop(t):
-  del t[1]
-  del t[-1]
-  #print t
-  return None 
+	del t[1]
+	del t[-1]
+	print t
+	return None 
 
 # chop(cheeseList)
-# print 'ex. 10.5\n', cheeseList
+# print cheeseList
 
 #--------------------------------------------------------------------------------
+# ex. 10.6
 """
-ex. 10.6
-return True is a list is sorted in ascending order
+list as a parameter and returns True if the list is sorted in ascending order and False otherwise. You can assume (as a precondition) that the elements of the list can be compared with the relational operators <, >, etc.
 """
 
-def is_sortedXXXXX(t):
-    for i in range(len(t)-1):
-        if t[i] > t[i-1]:
-            print t[i]
-            return False
-        print t[i]
-        #return True
-     
-#try a while loop? 
+
 def is_sorted(t):
-    i = 1
-    while i < len(t):
-        #print 'i is ', i
-        if t[i-1] < t[i]:
-            #print t[i]
-            i += 1
-        else:
-            #print t[i-1], ' ', t[i]  #show the two that are the first in list to 
-            #be out of order
-            return False
-    return True
+	i = 1
+	while i < len(t):
+	#print 'i is ', i
+		if t[i-1] <= t[i]:
+# 			print t[i]
+			i += 1
+		else:
+			return False
+	return True
 
 
-#cheeseList.sort()
-#print 'ex. 10.6\n', is_sorted(["apples", "brie", "carleton", 'dog', 'dagger', 'knock']) 
+# cheeseList.sort()
+# print is_sorted(cheeseList) 
 
 
 #--------------------------------------------------------------------------------
+# ex. 10.7
 """
-ex. 10.7: check to see if two word are anagrams of each other,assuming whatever 
-input comes in are both real words
+words are anagrams if you can rearrange the letters from one to spell the other. Write a function called is_anagram that takes two strings and returns True if they are anagrams.
+"""
 
-"""
 
 def is_anagram(string1, string2):
-    tStr1 = list(string1)
-    tStr2 = list(string2)
-    tStr1.sort()
-    tStr2.sort()
-    if tStr1 == tStr2:
-        print string1, string2, 'are anagrams'
-        return True
-    else:
-       	print 'NOT A MATCH:', string1, string2
-        return False
+	tStr1 = list(string1)
+	tStr2 = list(string2)
+	tStr1.sort()
+	tStr2.sort()
+	if tStr1 == tStr2:
+		print "'%s' and '%s' are anagrams" % (string1, string2)
+		return True
+	else:
+		print 'NOT A MATCH:', string1, string2
+		return False
 
-#is_anagram('goose', 'sss')
+# is_anagram('salt', 'alts')
 
 
 #--------------------------------------------------------------------------------
+# ex. 10.8.1
 """
-ex. 10.8.1: takes a list and returns if there are multiples of a list element
-*******************************this only returns the first duplicate instance
+takes a list and returns if there are multiples of a list element
+ONLY RETURNS FIRST DUPLICATE INSTANCE
 """
-
 
 def has_duplicates(t):
-    newList = t[:]
-    newList.sort()
-    #print newList
-    for i in range(len(newList)-1):
-        if newList[i] == newList[i-1]:
-            #print newList[i], '>> Positions', i, 'and', i-1, 'are duplicates.'
-            return True
-    return False
+	newList = t[:]
+	newList.sort()
+	#print newList
+	for i in range(len(newList)-1):
+		if newList[i] == newList[i-1]:
+			#print newList[i], '>> Positions', i, 'and', i-1, 'are duplicates.'
+			return True
+	return False
 
-#print has_duplicates(veggieList)
+# print has_duplicates(veggieList)
 
 #--------------------------------------------------------------------------------
+# ex. 10.8.2
 """
-ex. 10.8.2 : birthday paradox. 23 students. try using 'randint' from 'random' 
-module
+If there are 23 students in your class, what are the chances that two of you have the same birthday? You can estimate this probability by generating random samples of 23 birthdays and checking for matches. Hint: you can generate random birthdays with the randint function in the random module.
 """
 
 def birthdayParadox(numOfStudents):
-    t = []
-    i = 0
-    while i < numOfStudents:
-        #print i
-        t.append(randint(0, 365))
-        i += 1
-    return has_duplicates(t)
+	t = []
+	i = 0
+	while i < numOfStudents:
+		#print i
+		t.append(randint(0, 365))
+		i += 1
+	return has_duplicates(t)
     
     
 def run_birthdayParadox(numOfStudents, numOfCycles):
-    percentageDuplicates = 0.0
-    i = 0
-    while i < numOfCycles:
-        if birthdayParadox(numOfStudents) == True:
-            percentageDuplicates +=1.0
-            i += 1
-        else:
-            i += 1
-    percentageDuplicates = (percentageDuplicates/numOfCycles) * 100
-    print percentageDuplicates, '% of the cycles run have duplicates.'
+	percentageDuplicates = 0.0
+	i = 0
+	while i < numOfCycles:
+		if birthdayParadox(numOfStudents) == True:
+			percentageDuplicates +=1.0
+			i += 1
+		else:
+			i += 1
+	percentageDuplicates = (percentageDuplicates/numOfCycles) * 100
+	print "%f percent of the cycles run have duplicates." % percentageDuplicates
     
-#print birthdayParadox(23)
-#when numOfStudents changes from 23 to 32, the % duplicates goes from 50% to 70%
-#run_birthdayParadox(32, 10000)
+# print birthdayParadox(23)
+####when numOfStudents changes from 23 to 32, the % duplicates goes from 50% to 70%
+# run_birthdayParadox(35, 10000)
 
 #--------------------------------------------------------------------------------
+# ex. 10.9
 """
-ex. 10.9: get a list, return new list with only unique elements
-
-******************** NOT DONE. PROBLEM: list index out of range. when list items 
-are removed it affects the len value and throws an error
-
+Take a list and return a new list with only the unique elements from the original. Hint: list doesnt have to be in the same order.
 """
-#try building a new list with those duplicate values
-# for item in tempList, remove item in 
+
 
 def remove_duplicates(t): 
-    newList = t[:]
-    newList.sort()   #try 'sorted'. creats new list, leaves original alone
-    for i in range(len(newList) - 1):
-        tempList = 0
-        if newList[i] == newList[i-1]:
-            #print 'Item', newList[i], 'was removed.'
-            tempList += [i]
-            #del newList[tempList]
-    return tempList
+	newList = t[:]
+	newList.sort()
+	finalList = []
+	i = 0
+	while i < len(newList):
+		if newList[i] != newList[i-1]:
+			print i
+			finalList.append(newList[i])
+		i += 1
+	return finalList
 
-#testList = randomListMaker()
-#print remove_duplicates(testList)
+# testList = randomListMaker()
+# print remove_duplicates(veggieList)
 
 
 #--------------------------------------------------------------------------------
+# ex. 10.10
 """
-ex. 10.10: read 'word.txt' file, build list with one element per word.
-write two versions, compare time: one with .append() and one with t = t + [x]
-use 'time' module to measure elapsed time
+Write a function that reads the file words.txt and builds a list with one element per word. Write two versions of this function, one using the append method and the other using the idiom t = t + [x]. Which one takes longer to run? Why?
 """
 
 def wordListAppend(file):
-    t1 = time.time()
-    wordList = []
-    fin = open(file)
-    for line in fin:
-        word = line.strip()
-        wordList.append(word)
-    t2 = time.time() - t1
-    print t2, ' append method'
-    return wordList
+	t1 = time.time()
+	wordList = []
+	fin = open(file)
+	for line in fin:
+		word = line.strip()
+		wordList.append(word)
+	t2 = time.time() - t1
+	print t2, ' append method'
+	return wordList
     
 def wordListIncrementer(file):
-    t1 = time.time()
-    wordList = []
-    fin = open(file)
-    for line in fin:
-        word = line.strip()
-        wordList = wordList + [word]
-    t2 = time.time() - t1
-    print t2, ' += method'
-    return wordList
+	t1 = time.time()
+	wordList = []
+	fin = open(file)
+	for line in fin:
+		word = line.strip()
+		wordList = wordList + [word]
+	t2 = time.time() - t1
+	print t2, ' += method'
+	return wordList
 
 #USE .append(x) TO ADD ELEMENTS TO STRINGS:
-#wordListAppend('words.txt')
+# wordListAppend('words.txt')
  
 #increment is WAY WAY WAY slower.
-#wordListIncrementer('words.txt')        
+# wordListIncrementer('words.txt')        
 
 #--------------------------------------------------------------------------------
+# ex. 10.11
 """
-ex. 10.11: use a bisection method to look for a word in the word list. 
-input a word. return index of word in list or NONE if it's not there.
-there is a 'bisect' module. read the documentation. try this after the recursion way.
+To check whether a word is in the word list, you could use the in operator, but it would be slow because it searches through the words in order.
+Because the words are in alphabetical order, we can speed things up with a bisection search (also known as binary search), which is similar to what you do when you look a word up in the dictionary.
+
+You start in the middle and check to see whether the word you are looking for comes before the word in the middle of the list. If so, then you search the first half of the list the same way. Otherwise you search the second half.
+Either way, you cut the remaining search space in half. If the word list has 113,809 words, it will take about 17 steps to find the word or conclude that it’s not there.
+Write a function called bisect that takes a sorted list and a target value and returns the index of the value in the list, if it’s there, or None if it’s not.
+Or you could read the documentation of the bisect module and use that! Solution: http:// thinkpython.com/code/inlist.py
 """
 
 def bisect(targetWord, wordList):
@@ -303,15 +310,15 @@ def bisect(targetWord, wordList):
 	for line in fin:
 	    word = line.strip()
 	    tempList.append(word)
-	list_length = len(tempList)
 	if list_length == 1:
-		if targetWord == tempWord[0]:
+		if targetWord == tempList[0]:
 			return 0
+		elif targetWord == tempList[len(tempList)/2]:
+			return #index
 		else:
 			return None
 			
-	#STUCK. HOW TO DO THE RECURSIVE CALLS.
-	
+
  	return list_length
 	# go to middle of list. if word is here, done
 	#if word is >, go to middle of >
@@ -322,7 +329,7 @@ def bisect(targetWord, wordList):
 ex. 10.12: find all the reverse pairs in the word list
 """
 def reversePairs(file): 
-    print None 
+    return None 
 
 #--------------------------------------------------------------------------------
 """
@@ -330,6 +337,3 @@ ex. 10.13: find all the 'interlocking' words: 'shoe' + 'cold' = 'schooled'
 """
 def interlockingWords(file):
     return None
-    
-if __name__ == "__main__":
-	#bisect('baby', 'words2.txt')
