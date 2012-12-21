@@ -34,16 +34,17 @@ def randomListMaker():
 
 #--------------------------------------------------------------------------------
 # ex. 10.1 
+"""
+sum of nested list of integers. in this method, all list elements should be lists
+in this method, one must know how many levels of nesting is happing (for the 
+'for loops')
+"""
+
 listOne = [2, 4, 6, 8]
 listTwo = [1, 3, 5, 7]
 list3 = [listOne, listTwo, [8, 9, 10, 11]]
 
 def nested_sum(theList):
-	"""
-	sum of nested list of integers. in this method, all list elements should be lists
-in this method, one must know how many levels of nesting is happing (for the 
-'for loops')
-	"""
 	listSum = 0
 	for x in theList:
 		for y in x:
@@ -55,14 +56,15 @@ in this method, one must know how many levels of nesting is happing (for the
 
 #--------------------------------------------------------------------------------
 # ex. 10.1 
+"""
+sum of nested list of integers. in this method, all list elements should be lists
+in this method, one must know how many levels of nesting is happing (for the 
+'for loops')
+"""
+
 listThree = [listOne, listTwo, 8, 9, 10, 11]
 
 def nested_sumNestMix(theList):
-	"""
-	sum of nested list of integers. in this method, all list elements should be lists
-in this method, one must know how many levels of nesting is happing (for the 
-'for loops')
-	"""
 	listSum = 0
 	for x in theList:
 		if type(x) == list:
@@ -77,11 +79,12 @@ in this method, one must know how many levels of nesting is happing (for the
 
 #--------------------------------------------------------------------------------
 #ex. 10.2 
+"""
+take a list of nested strings, return a nested list with all strings capitalized.
+"""
+
 def capitalize_all(t):
-	"""
-	take a list of nested strings, return a nested list with all strings capitalized.
-	"""
-	res = []
+res = []
 	for s in t:
 		subRes = []
 		for u in s:
@@ -94,10 +97,11 @@ def capitalize_all(t):
 
 #--------------------------------------------------------------------------------
 # ex. 10.3
+"""
+cumulative sum of a list of integers
+"""
+
 def cumulative_sum(t):
-	"""
-	cumulative sum of a list of integers
-	"""
 	newList = t[:]  #comment this line out, changes vars to 't' and the original list will be modified instead of a new list
 	holder = 0    
 	for i in range(len(t)):
@@ -125,8 +129,8 @@ def middle(t):
 
 
 #--------------------------------------------------------------------------------
+# ex. 10.5
 """
-ex. 10.5
 remove first and last, return none
 """
 
@@ -294,6 +298,7 @@ def wordListIncrementer(file):
 
 #--------------------------------------------------------------------------------
 # ex. 10.11
+################### NOT DONE
 """
 To check whether a word is in the word list, you could use the in operator, but it would be slow because it searches through the words in order.
 Because the words are in alphabetical order, we can speed things up with a bisection search (also known as binary search), which is similar to what you do when you look a word up in the dictionary.
@@ -304,36 +309,68 @@ Write a function called bisect that takes a sorted list and a target value and r
 Or you could read the documentation of the bisect module and use that! Solution: http:// thinkpython.com/code/inlist.py
 """
 
-def bisect(targetWord, wordList):
-	fin = open(wordList)
+def bisect(targetWord):
+	fin = open('words.txt')
 	tempList = []
+	length = len(tempList)
 	for line in fin:
 	    word = line.strip()
 	    tempList.append(word)
-	if list_length == 1:
-		if targetWord == tempList[0]:
-			return 0
-		elif targetWord == tempList[len(tempList)/2]:
-			return #index
-		else:
-			return None
+	#if the word is exactly in the middle, first try:
+	if targetWord == tempList[length/2]:
+		return tempList[length/2]
+	elif targetWord > tempList[length/2]:
+		bisect(targetWord)
+	elif targetWord < tempList[length/2]:
+		bisect(targetWord)
+	elif targetWord == tempList[i]:
+		return i
+	else:
+		return None	
 			
+print bisect('zebra')
 
- 	return list_length
-	# go to middle of list. if word is here, done
-	#if word is >, go to middle of >
-	#if word is <, to to middle of <
 
 #--------------------------------------------------------------------------------
+# ex. 10.12
+################### NOT DONE
 """
-ex. 10.12: find all the reverse pairs in the word list
+Two words are a “reverse pair” if each is the reverse of the other. Write a program that finds all the reverse pairs in the word list. 
 """
-def reversePairs(file): 
-    return None 
+
+def checkWord(word1, word2):
+	if len(word1) == len(word2):
+		if word1[:1] == word2[-1:]:
+			checkWord(word1, word2)
+# 			return word1, word2
+	else
+		return None	
+
+def reversePairs(wordList): 
+    fin = open(wordList)
+    pairsList = []
+    for line in fin:
+    	word = line.strip()
+    	tempList.append(word)
+    i = 0
+    while i < len(tempList):
+    	tempList[i] = word1 
+    	tempList[i - 1] = word2
+    	currentTest = checkWord(word1, word2)
+    	if currentTest != None:
+    		pairsList.append(currentTest)
+    	i += 1
+    	
+#     	if word[::1] == nextWord[::-1]:
+#     		word.append(pairsList)
+#     		nextWord.append(pairsList)
 
 #--------------------------------------------------------------------------------
+# ex. 10.13
+################### NOT DONE
 """
-ex. 10.13: find all the 'interlocking' words: 'shoe' + 'cold' = 'schooled'
+Exercise 10.13. Two words “interlock” if taking alternating letters from each forms a new word. For example, “shoe” and “cold” interlock to form “schooled.” 
 """
+
 def interlockingWords(file):
     return None
