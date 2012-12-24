@@ -79,7 +79,7 @@ def reverse_lookup(d, v):
 if __name__ == "__main__":
 	h = histogram('mary poppins')
 	k = reverse_lookup(h, 3)
-	print k	
+	print k	 
 
 #	print print_keysValuesAlt('wordsA.txt')
 #	print print_keys('words2.txt')
