@@ -84,7 +84,7 @@ take a list of nested strings, return a nested list with all strings capitalized
 """
 
 def capitalize_all(t):
-res = []
+	res = []
 	for s in t:
 		subRes = []
 		for u in s:
@@ -297,15 +297,16 @@ def wordListIncrementer(file):
 # wordListIncrementer('words.txt')        
 
 #--------------------------------------------------------------------------------
-# ex. 10.11
+# ex. 10.11.1 
+# recursion version
 ################### NOT DONE
 """
 To check whether a word is in the word list, you could use the in operator, but it would be slow because it searches through the words in order.
 Because the words are in alphabetical order, we can speed things up with a bisection search (also known as binary search), which is similar to what you do when you look a word up in the dictionary.
 
 You start in the middle and check to see whether the word you are looking for comes before the word in the middle of the list. If so, then you search the first half of the list the same way. Otherwise you search the second half.
-Either way, you cut the remaining search space in half. If the word list has 113,809 words, it will take about 17 steps to find the word or conclude that it’s not there.
-Write a function called bisect that takes a sorted list and a target value and returns the index of the value in the list, if it’s there, or None if it’s not.
+Either way, you cut the remaining search space in half. If the word list has 113,809 words, it will take about 17 steps to find the word or conclude that its not there.
+Write a function called bisect that takes a sorted list and a target value and returns the index of the value in the list, if its there, or None if its not.
 Or you could read the documentation of the bisect module and use that! Solution: http:// thinkpython.com/code/inlist.py
 """
 
@@ -328,14 +329,36 @@ def bisect(targetWord):
 	else:
 		return None	
 			
-print bisect('zebra')
+# print bisect('zebra')
+
+
+#--------------------------------------------------------------------------------
+# ex. 10.11.2
+# bisect module version
+################### NOT DONE
+"""
+To check whether a word is in the word list, you could use the in operator, but it would be slow because it searches through the words in order.
+Because the words are in alphabetical order, we can speed things up with a bisection search (also known as binary search), which is similar to what you do when you look a word up in the dictionary.
+
+You start in the middle and check to see whether the word you are looking for comes before the word in the middle of the list. If so, then you search the first half of the list the same way. Otherwise you search the second half.
+Either way, you cut the remaining search space in half. If the word list has 113,809 words, it will take about 17 steps to find the word or conclude that its not there.
+Write a function called bisect that takes a sorted list and a target value and returns the index of the value in the list, if its there, or None if its not.
+Or you could read the documentation of the bisect module and use that! Solution: http:// thinkpython.com/code/inlist.py
+"""
+import bisect
+
+def bisectAlt(targetWord, wordList):
+	i = bisect_left(wordList, targetWord)
+	return i
+				
+print bisectAlt('zebra', 'words.txt')
 
 
 #--------------------------------------------------------------------------------
 # ex. 10.12
 ################### NOT DONE
 """
-Two words are a “reverse pair” if each is the reverse of the other. Write a program that finds all the reverse pairs in the word list. 
+Two words are a "reverse pair" if each is the reverse of the other. Write a program that finds all the reverse pairs in the word list. 
 """
 
 def checkWord(word1, word2):
@@ -343,7 +366,7 @@ def checkWord(word1, word2):
 		if word1[:1] == word2[-1:]:
 			checkWord(word1, word2)
 # 			return word1, word2
-	else
+	else:
 		return None	
 
 def reversePairs(wordList): 
@@ -369,8 +392,7 @@ def reversePairs(wordList):
 # ex. 10.13
 ################### NOT DONE
 """
-Exercise 10.13. Two words “interlock” if taking alternating letters from each forms a new word. For example, “shoe” and “cold” interlock to form “schooled.” 
+Exercise 10.13. Two words "interlock" if taking alternating letters from each forms a new word. For example, "shoe" and "cold" interlock to form "schooled." 
 """
-
 def interlockingWords(file):
     return None
