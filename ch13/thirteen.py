@@ -105,19 +105,19 @@ def topTwentyWords(f):
 	d = wordCounter(f)
 	mostWord = ''
 	counter = 0
-	wordListCombo = []
+# 	wordListCombo = []
 	wordList = []
 	for k in d:
 		if len(wordList) <=20:
 			if '--' not in k:
-				wordListCombo.append((k, d[k]))
+# 				wordListCombo.append((k, d[k]))
 				wordList.append(k)
 		if d[k] > counter:
 			if '--' not in k:
 				mostWord, counter = k, d[k]
-				wordListCombo.pop()
+# 				wordListCombo.pop()
 				wordList.pop()
-				wordListCombo.insert(0,(k, d[k]))
+# 				wordListCombo.insert(0,(k, d[k]))
 				wordList.insert(0, k)
 # 				print "COUNTER/MOST WORD:", counter, mostWord
 	return wordList	
