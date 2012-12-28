@@ -1,0 +1,7 @@
+
+difference between __str__ and __repr__:
+1. the init object has already been created by the time it's been called, so it's not really constructing anything.
+
+2. __repr__ is a readable representation of the class you're implementing.
+__str__ is a more humanly readable representation of the class and can be used to help decipher problems that may arise from the bugs with the use of said class.
+
